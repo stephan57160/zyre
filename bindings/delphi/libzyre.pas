@@ -233,6 +233,12 @@ type
   // major * 10000 + minor * 100 + patch, as a single integer.
   function zyre_version: UInt64; cdecl; external lib_zyre {$IFDEF MSWINDOWS}delayed{$ENDIF};
 
+  function zyre_get_build_date: PAnsiChar; cdecl; external lib_zyre {$IFDEF MSWINDOWS}delayed{$ENDIF};
+
+  function zyre_get_build_time: PAnsiChar; cdecl; external lib_zyre {$IFDEF MSWINDOWS}delayed{$ENDIF};
+
+  function zyre_get_build_syst: PAnsiChar; cdecl; external lib_zyre {$IFDEF MSWINDOWS}delayed{$ENDIF};
+
   // Self test of this class.
   procedure zyre_test(Verbose: Boolean); cdecl; external lib_zyre {$IFDEF MSWINDOWS}delayed{$ENDIF};
 

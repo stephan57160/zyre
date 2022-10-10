@@ -73,6 +73,9 @@ NAN_MODULE_INIT (Zyre::Init) {
     Nan::SetPrototypeMethod (tpl, "socket", _socket);
     Nan::SetPrototypeMethod (tpl, "print", _print);
     Nan::SetPrototypeMethod (tpl, "version", _version);
+    Nan::SetPrototypeMethod (tpl, "getBuildDate", _get_build_date);
+    Nan::SetPrototypeMethod (tpl, "getBuildTime", _get_build_time);
+    Nan::SetPrototypeMethod (tpl, "getBuildSyst", _get_build_syst);
     Nan::SetPrototypeMethod (tpl, "test", _test);
 
     constructor ().Reset (Nan::GetFunction (tpl).ToLocalChecked ());
@@ -728,6 +731,21 @@ NAN_METHOD (Zyre::_print) {
 NAN_METHOD (Zyre::_version) {
     uint64_t result = zyre_version ();
     info.GetReturnValue ().Set (Nan::New<Number>(result));
+}
+
+NAN_METHOD (Zyre::_get_build_date) {
+    char *result = (char *) zyre_get_build_date ();
+    info.GetReturnValue ().Set (Nan::New (result).ToLocalChecked ());
+}
+
+NAN_METHOD (Zyre::_get_build_time) {
+    char *result = (char *) zyre_get_build_time ();
+    info.GetReturnValue ().Set (Nan::New (result).ToLocalChecked ());
+}
+
+NAN_METHOD (Zyre::_get_build_syst) {
+    char *result = (char *) zyre_get_build_syst ();
+    info.GetReturnValue ().Set (Nan::New (result).ToLocalChecked ());
 }
 
 NAN_METHOD (Zyre::_test) {

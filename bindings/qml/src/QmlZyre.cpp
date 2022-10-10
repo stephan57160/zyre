@@ -324,6 +324,33 @@ uint64_t QmlZyreAttached::version () {
 };
 
 ///
+//
+QString QmlZyreAttached::getBuildDate () {
+    char *retStr_ = zyre_get_build_date ();
+    QString retQStr_ = QString (retStr_);
+    free (retStr_);
+    return retQStr_;
+};
+
+///
+//
+QString QmlZyreAttached::getBuildTime () {
+    char *retStr_ = zyre_get_build_time ();
+    QString retQStr_ = QString (retStr_);
+    free (retStr_);
+    return retQStr_;
+};
+
+///
+//
+QString QmlZyreAttached::getBuildSyst () {
+    char *retStr_ = zyre_get_build_syst ();
+    QString retQStr_ = QString (retStr_);
+    free (retStr_);
+    return retQStr_;
+};
+
+///
 //  Self test of this class.
 void QmlZyreAttached::test (bool verbose) {
     zyre_test (verbose);

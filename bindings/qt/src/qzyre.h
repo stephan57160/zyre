@@ -207,6 +207,15 @@ public:
     //  major * 10000 + minor * 100 + patch, as a single integer.
     static quint64 version ();
 
+    //
+    static QString getBuildDate ();
+
+    //
+    static QString getBuildTime ();
+
+    //
+    static QString getBuildSyst ();
+
     //  Self test of this class.
     static void test (bool verbose);
 

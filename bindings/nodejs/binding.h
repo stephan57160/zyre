@@ -82,6 +82,9 @@ class Zyre: public Nan::ObjectWrap {
     static NAN_METHOD (_socket);
     static NAN_METHOD (_print);
     static NAN_METHOD (_version);
+    static NAN_METHOD (_get_build_date);
+    static NAN_METHOD (_get_build_time);
+    static NAN_METHOD (_get_build_syst);
     static NAN_METHOD (_test);
 };
 

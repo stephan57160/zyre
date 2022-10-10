@@ -357,6 +357,24 @@ Return the Zyre version for run-time API detection; returns
 major * 10000 + minor * 100 + patch, as a single integer.
 
 ```
+string my_zyre.getBuildDate ()
+```
+
+
+
+```
+string my_zyre.getBuildTime ()
+```
+
+
+
+```
+string my_zyre.getBuildSyst ()
+```
+
+
+
+```
 nothing my_zyre.test (Boolean)
 ```
 

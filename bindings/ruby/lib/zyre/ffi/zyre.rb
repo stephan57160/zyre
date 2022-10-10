@@ -612,6 +612,33 @@ module Zyre
         result
       end
 
+      #
+      #
+      # @return [::FFI::AutoPointer]
+      def self.get_build_date()
+        result = ::Zyre::FFI.zyre_get_build_date()
+        result = ::FFI::AutoPointer.new(result, LibC.method(:free))
+        result
+      end
+
+      #
+      #
+      # @return [::FFI::AutoPointer]
+      def self.get_build_time()
+        result = ::Zyre::FFI.zyre_get_build_time()
+        result = ::FFI::AutoPointer.new(result, LibC.method(:free))
+        result
+      end
+
+      #
+      #
+      # @return [::FFI::AutoPointer]
+      def self.get_build_syst()
+        result = ::Zyre::FFI.zyre_get_build_syst()
+        result = ::FFI::AutoPointer.new(result, LibC.method(:free))
+        result
+      end
+
       # Self test of this class.
       #
       # @param verbose [Boolean]

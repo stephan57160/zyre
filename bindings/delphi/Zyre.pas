@@ -260,6 +260,12 @@ uses
     // major * 10000 + minor * 100 + patch, as a single integer.
     class function Version: UInt64;
 
+    class function GetBuildDate: string;
+
+    class function GetBuildTime: string;
+
+    class function GetBuildSyst: string;
+
     // Self test of this class.
     class procedure Test(Verbose: Boolean);
 
@@ -546,6 +552,21 @@ uses
   class function TZyre.Version: UInt64;
   begin
     Result := zyre_version;
+  end;
+
+  class function TZyre.GetBuildDate: string;
+  begin
+    Result := ZFreeString(zyre_get_build_date);
+  end;
+
+  class function TZyre.GetBuildTime: string;
+  begin
+    Result := ZFreeString(zyre_get_build_time);
+  end;
+
+  class function TZyre.GetBuildSyst: string;
+  begin
+    Result := ZFreeString(zyre_get_build_syst);
   end;
 
   class procedure TZyre.Test(Verbose: Boolean);

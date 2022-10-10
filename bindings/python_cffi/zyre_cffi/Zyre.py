@@ -332,6 +332,27 @@ class Zyre(object):
         return utils.lib.zyre_version()
 
     @staticmethod
+    def get_build_date():
+        """
+
+        """
+        return utils.lib.zyre_get_build_date()
+
+    @staticmethod
+    def get_build_time():
+        """
+
+        """
+        return utils.lib.zyre_get_build_time()
+
+    @staticmethod
+    def get_build_syst():
+        """
+
+        """
+        return utils.lib.zyre_get_build_syst()
+
+    @staticmethod
     def test(verbose):
         """
         Self test of this class.

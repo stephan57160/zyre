@@ -356,6 +356,33 @@ Java_org_zeromq_zyre_Zyre__1_1version (JNIEnv *env, jclass c)
     return version_;
 }
 
+JNIEXPORT jstring JNICALL
+Java_org_zeromq_zyre_Zyre__1_1getBuildDate (JNIEnv *env, jclass c)
+{
+    char *get_build_date_ = (char *) zyre_get_build_date ();
+    jstring return_string_ = (*env)->NewStringUTF (env, get_build_date_);
+    zstr_free (&get_build_date_);
+    return return_string_;
+}
+
+JNIEXPORT jstring JNICALL
+Java_org_zeromq_zyre_Zyre__1_1getBuildTime (JNIEnv *env, jclass c)
+{
+    char *get_build_time_ = (char *) zyre_get_build_time ();
+    jstring return_string_ = (*env)->NewStringUTF (env, get_build_time_);
+    zstr_free (&get_build_time_);
+    return return_string_;
+}
+
+JNIEXPORT jstring JNICALL
+Java_org_zeromq_zyre_Zyre__1_1getBuildSyst (JNIEnv *env, jclass c)
+{
+    char *get_build_syst_ = (char *) zyre_get_build_syst ();
+    jstring return_string_ = (*env)->NewStringUTF (env, get_build_syst_);
+    zstr_free (&get_build_syst_);
+    return return_string_;
+}
+
 JNIEXPORT void JNICALL
 Java_org_zeromq_zyre_Zyre__1_1test (JNIEnv *env, jclass c, jboolean verbose)
 {

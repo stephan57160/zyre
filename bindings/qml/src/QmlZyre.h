@@ -220,6 +220,15 @@ public slots:
     //  major * 10000 + minor * 100 + patch, as a single integer.
     uint64_t version ();
 
+    //
+    QString getBuildDate ();
+
+    //
+    QString getBuildTime ();
+
+    //
+    QString getBuildSyst ();
+
     //  Self test of this class.
     void test (bool verbose);
 

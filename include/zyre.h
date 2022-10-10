@@ -224,6 +224,21 @@ ZYRE_EXPORT void
 ZYRE_EXPORT uint64_t
     zyre_version (void);
 
+//
+//  Caller owns return value and must destroy it when done.
+ZYRE_EXPORT char *
+    zyre_get_build_date (void);
+
+//
+//  Caller owns return value and must destroy it when done.
+ZYRE_EXPORT char *
+    zyre_get_build_time (void);
+
+//
+//  Caller owns return value and must destroy it when done.
+ZYRE_EXPORT char *
+    zyre_get_build_syst (void);
+
 //  Self test of this class.
 ZYRE_EXPORT void
     zyre_test (bool verbose);

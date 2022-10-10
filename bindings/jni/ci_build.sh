@@ -50,8 +50,15 @@ mkdir -p /tmp/tmp-deps
 
 # Clone and build dependencies
 [ -z "$CI_TIME" ] || echo "`date`: Starting build of dependencies (if any)..."
-export LIBZMQ_ROOT="/tmp/tmp-deps/libzmq"
-$CI_TIME git clone --quiet --depth 1 https://github.com/zeromq/libzmq.git $LIBZMQ_ROOT
+
+export LIBZMQ_ROOT=${LIBZMQ_ROOT:-"/tmp/tmp-deps/libzmq"}
+if [ -d $LIBZMQ_ROOT ] ; then
+    echo "ZYRE - Using existing LIBZMQ folder: '$LIBZMQ_ROOT'."
+    (cd $LIBZMQ_ROOT && make clean) || :
+else
+    echo "ZYRE - Cloning 'https://github.com/zeromq/libzmq.git' (default branch) to '$LIBZMQ_ROOT'."
+    $CI_TIME git clone --quiet --depth 1 https://github.com/zeromq/libzmq.git $LIBZMQ_ROOT
+fi
 
 cd $LIBZMQ_ROOT
 git --no-pager log --oneline -n1
@@ -74,8 +81,15 @@ $CI_TIME make -j4
 $CI_TIME make install
 
 
-export CZMQ_ROOT="/tmp/tmp-deps/czmq"
-$CI_TIME git clone --quiet --depth 1 https://github.com/zeromq/czmq.git $CZMQ_ROOT
+
+export CZMQ_ROOT=${CZMQ_ROOT:-"/tmp/tmp-deps/czmq"}
+if [ -d $CZMQ_ROOT ] ; then
+    echo "ZYRE - Using existing CZMQ folder: '$CZMQ_ROOT'."
+    (cd $CZMQ_ROOT && make clean) || :
+else
+    echo "ZYRE - Cloning 'https://github.com/zeromq/czmq.git' (default branch) to '$CZMQ_ROOT'."
+    $CI_TIME git clone --quiet --depth 1 https://github.com/zeromq/czmq.git $CZMQ_ROOT
+fi
 
 cd $CZMQ_ROOT
 git --no-pager log --oneline -n1
@@ -154,7 +168,7 @@ if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$BINDING_OPTS" == "android" ]; then
             export FILENAME=$NDK_VERSION-$HOST_PLATFORM.zip
 
             (cd '/tmp' \
-                && wget http://dl.google.com/android/repository/$FILENAME -O $FILENAME &> /dev/null \
+                && wget -q http://dl.google.com/android/repository/$FILENAME -O $FILENAME \
                 && unzip -q $FILENAME) || exit 1
             unset FILENAME
         fi

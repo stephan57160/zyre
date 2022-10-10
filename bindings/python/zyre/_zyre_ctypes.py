@@ -152,6 +152,12 @@ lib.zyre_print.restype = None
 lib.zyre_print.argtypes = [zyre_p]
 lib.zyre_version.restype = c_long
 lib.zyre_version.argtypes = []
+lib.zyre_get_build_date.restype = POINTER(c_char)
+lib.zyre_get_build_date.argtypes = []
+lib.zyre_get_build_time.restype = POINTER(c_char)
+lib.zyre_get_build_time.argtypes = []
+lib.zyre_get_build_syst.restype = POINTER(c_char)
+lib.zyre_get_build_syst.argtypes = []
 lib.zyre_test.restype = None
 lib.zyre_test.argtypes = [c_bool]
 
@@ -510,6 +516,27 @@ for polling with libzmq (base ZMQ library)
 major * 10000 + minor * 100 + patch, as a single integer.
         """
         return lib.zyre_version()
+
+    @staticmethod
+    def get_build_date():
+        """
+
+        """
+        return return_fresh_string(lib.zyre_get_build_date())
+
+    @staticmethod
+    def get_build_time():
+        """
+
+        """
+        return return_fresh_string(lib.zyre_get_build_time())
+
+    @staticmethod
+    def get_build_syst():
+        """
+
+        """
+        return return_fresh_string(lib.zyre_get_build_syst())
 
     @staticmethod
     def test(verbose):

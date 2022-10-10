@@ -96,6 +96,9 @@ module Zyre
       attach_function :zyre_socket_zmq, [:pointer], :pointer, **opts
       attach_function :zyre_print, [:pointer], :void, **opts
       attach_function :zyre_version, [], :uint64, **opts
+      attach_function :zyre_get_build_date, [], :pointer, **opts
+      attach_function :zyre_get_build_time, [], :pointer, **opts
+      attach_function :zyre_get_build_syst, [], :pointer, **opts
       attach_function :zyre_test, [:bool], :void, **opts
 
       require_relative 'ffi/zyre'

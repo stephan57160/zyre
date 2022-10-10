@@ -391,6 +391,27 @@ public class Zyre implements AutoCloseable {
         return __version ();
     }
     /*
+
+    */
+    native static String __getBuildDate ();
+    public static String getBuildDate () {
+        return __getBuildDate ();
+    }
+    /*
+
+    */
+    native static String __getBuildTime ();
+    public static String getBuildTime () {
+        return __getBuildTime ();
+    }
+    /*
+
+    */
+    native static String __getBuildSyst ();
+    public static String getBuildSyst () {
+        return __getBuildSyst ();
+    }
+    /*
     Self test of this class.
     */
     native static void __test (boolean verbose);

@@ -423,6 +423,36 @@ quint64 QZyre::version ()
 }
 
 ///
+//
+QString QZyre::getBuildDate ()
+{
+    char *retStr_ = zyre_get_build_date ();
+    QString rv = QString (retStr_);
+    zstr_free (&retStr_);
+    return rv;
+}
+
+///
+//
+QString QZyre::getBuildTime ()
+{
+    char *retStr_ = zyre_get_build_time ();
+    QString rv = QString (retStr_);
+    zstr_free (&retStr_);
+    return rv;
+}
+
+///
+//
+QString QZyre::getBuildSyst ()
+{
+    char *retStr_ = zyre_get_build_syst ();
+    QString rv = QString (retStr_);
+    zstr_free (&retStr_);
+    return rv;
+}
+
+///
 //  Self test of this class.
 void QZyre::test (bool verbose)
 {

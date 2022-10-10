@@ -27,7 +27,7 @@ if [ ! -d "${ANDROID_NDK_ROOT}" ]; then
     export FILENAME=$NDK_VERSION-$HOST_PLATFORM.zip
 
     (cd '/tmp' \
-        && wget http://dl.google.com/android/repository/$FILENAME -O $FILENAME &> /dev/null \
+        && wget -q http://dl.google.com/android/repository/$FILENAME -O $FILENAME \
         && unzip -q $FILENAME) || exit 1
     unset FILENAME
 fi
@@ -35,11 +35,25 @@ fi
 rm -rf /tmp/tmp-deps
 mkdir -p /tmp/tmp-deps
 
-export LIBZMQ_ROOT="/tmp/tmp-deps/libzmq"
-git clone --quiet --depth 1 https://github.com/zeromq/libzmq.git $LIBZMQ_ROOT
+export LIBZMQ_ROOT=${LIBZMQ_ROOT:-"/tmp/tmp-deps/libzmq"}
+if [ -d "$LIBZMQ_ROOT" ] ; then
+    echo "ZYRE - Using existing LIBZMQ folder: '$LIBZMQ_ROOT'."
+    (cd $LIBZMQ_ROOT && make clean) || :
+else
+    echo "ZYRE - Cloning 'https://github.com/zeromq/libzmq.git' (default branch) to '$LIBZMQ_ROOT'."
+    git clone --quiet --depth 1 https://github.com/zeromq/libzmq.git $LIBZMQ_ROOT
+    (cd $LIBZMQ_ROOT && git log --oneline -n 1)
+fi
 
-export CZMQ_ROOT="/tmp/tmp-deps/czmq"
-git clone --quiet --depth 1 https://github.com/zeromq/czmq.git $CZMQ_ROOT
+export CZMQ_ROOT=${CZMQ_ROOT:-"/tmp/tmp-deps/czmq"}
+if [ -d "$CZMQ_ROOT" ] ; then
+    echo "ZYRE - Using existing CZMQ folder: '$CZMQ_ROOT'."
+    (cd $CZMQ_ROOT && make clean) || :
+else
+    echo "ZYRE - Cloning 'https://github.com/zeromq/czmq.git' (default branch) to '$CZMQ_ROOT'."
+    git clone --quiet --depth 1 https://github.com/zeromq/czmq.git $CZMQ_ROOT
+    (cd $CZMQ_ROOT && git log --oneline -n 1)
+fi
 
 ./build.sh "arm"
 ./build.sh "arm64"
