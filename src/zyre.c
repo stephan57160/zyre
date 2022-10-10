@@ -55,6 +55,10 @@
 
 #include "zyre_classes.h"
 
+#define ZYRE_BUILD_DATE "@BUILD_DATE@"
+#define ZYRE_BUILD_TIME "@BUILD_TIME@"
+#define ZYRE_BUILD_SYST "@BUILD_SYST@"
+
 //  --------------------------------------------------------------------------
 //  Structure of our class
 
@@ -749,6 +753,33 @@ uint64_t
 zyre_version (void)
 {
     return ZYRE_VERSION;
+}
+
+
+//  --------------------------------------------------------------------------
+
+char *
+zyre_get_build_date (void)
+{
+    return strdup (ZYRE_BUILD_DATE);
+}
+
+
+//  --------------------------------------------------------------------------
+
+char *
+zyre_get_build_time (void)
+{
+    return strdup (ZYRE_BUILD_TIME);
+}
+
+
+//  --------------------------------------------------------------------------
+
+char *
+zyre_get_build_syst (void)
+{
+    return strdup (ZYRE_BUILD_SYST);
 }
 
 

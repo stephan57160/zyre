@@ -302,4 +302,17 @@
         major * 10000 + minor * 100 + patch, as a single integer.
         <return type = "number" size = "8" />
     </method>
+
+    <method name = "get build date" singleton = "1">
+        <return type = "string" fresh = "1" />
+    </method>
+
+    <method name = "get build time" singleton = "1">
+        <return type = "string" fresh = "1" />
+    </method>
+
+    <method name = "get build syst" singleton = "1">
+        <return type = "string" fresh = "1" />
+    </method>
+
 </class>
